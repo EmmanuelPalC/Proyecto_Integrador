@@ -6,6 +6,8 @@ from debug import debug
 from support import *
 from random import choice
 from weapon import Weapon
+from ui import UI
+from enemy import Enemy
 
 
 class Level:
@@ -18,8 +20,16 @@ class Level:
         self.visible_sprites = YsortCameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
 
+        #attack sprites
+        self.current_attack = None
+        self.attack_sprites = pygame.sprite.Group()
+        self.attackable_sprites = pygame.sprite.Group()
+
         #sprite setup
         self.create_map()
+
+        #user interface
+        self.ui = UI()
 
     def create_map(self):
         layout = {
@@ -28,6 +38,7 @@ class Level:
             'bush2': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto_2.csv'),
             'bush3': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto_3.csv'),
             'bush4': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto_4.csv'),
+            'entities1':import_csv_layout('assets\mapa\MAPAAAAA_entities.csv'),
         }
 
 
@@ -51,21 +62,33 @@ class Level:
                             if style == 'bush4':
                                 arbusto =pygame.image.load('assets/mapa/Art_PIXEL/PNG/arbusto.png')
                                 Tile((250,200),[self.visible_sprites,self.obstacles_sprites],'bush4',arbusto)
-                            
+
+
                             if style == 'object':
                                 surf = graphics['objects'][int(col)]
                                 Tile((x,y),[self.visible_sprites,self.obstacles_sprites],'object',surf)
+
+                            if style == 'entities1':
+                                Enemy('bob',(x,y),[self.visible_sprites],self.obstacles_sprites)
+
                             
-                            self.player = Player((450,280),[self.visible_sprites],self.obstacles_sprites, self.create_attack)
+                                                     
+        self.player = Player((450,280),[self.visible_sprites],self.obstacles_sprites,self.create_attack,self.destroy_attack)
        
     def create_attack(self):
-        Weapon(self.player ,[self.visible_sprites])
+        self.current_attack = Weapon(self.player ,[self.visible_sprites])
+
+    def destroy_attack(self):
+        if self.current_attack:
+            self.current_attack.kill()
+        self.current_attack = None
 
     def run(self):
         #update and draw the game
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
-        debug(self.player.status)
+        self.visible_sprites.enemy_update(self.player)
+        self.ui.display(self.player)
         
 
 class YsortCameraGroup(pygame.sprite.Group):
@@ -96,4 +119,8 @@ class YsortCameraGroup(pygame.sprite.Group):
             offset_pos = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image,offset_pos)
 
+    def enemy_update(self,player):
+        enemy_sprites = [sprite for sprite in self.sprites() if hasattr(sprite,'sprite_type') and sprite.sprite_type == 'enemy']
+        for enemy in enemy_sprites:
+            enemy.enemy_update(player)
         

@@ -6,10 +6,10 @@ from debug import *
 
 pygame.init()
 
-SCREEN = pygame.display.set_mode((1280, 720))
+SCREEN = pygame.display.set_mode((960, 620))
 pygame.display.set_caption("Forest Keepers")
 
-BG = pygame.image.load("assets/menu/background.png")
+BG = pygame.image.load("assets\menu\Menu_1.png")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/menu/font.ttf", size)
@@ -79,8 +79,6 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(100).render("MAIN MENU", True, "#b68f40")
-        MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets\menu\Play Rect.png"), pos=(640, 250), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
@@ -89,7 +87,7 @@ def main_menu():
         QUIT_BUTTON = Button(image=pygame.image.load("assets\menu\Quit Rect.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
-        SCREEN.blit(MENU_TEXT, MENU_RECT)
+        
 
         for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
