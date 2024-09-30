@@ -22,11 +22,17 @@ HEALTH_COLOR = 'red'
 ENERGY_COLOR = 'yellow'
 UI_BORDER_COLOR_ACTIVE = 'gold'
 
+#menu
+TEXT_COLOR_SELECTED = '#111111'
+BAR_COLOR = '#EEEEEE'
+BAR_COLOR_SELECTED = '#111111'
+UPGRADE_BG_COLOR_SELECTED = '#EEEEEE'
+
 #weapon
 weapon_data ={
-    'hammer':{'cooldown':100, 'damage':15,'graphic':'assets\player\hammer.png'}
+    'hammer':{'cooldown':50, 'damage':15,'graphic':'assets\player\hammer.png'}
 }
 
 monster_data ={
-    'bob':{'health':100,'damage':50,'attack_type':'slash','speed':5,'resistance':3,'attack_radius':60,'notice_radius':100}
+    'bob':{'health':100,'damage':20,'attack_type':'slash','speed':5,'resistance':3,'attack_radius':60,'notice_radius':150}
 }

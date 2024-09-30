@@ -8,6 +8,7 @@ from random import choice
 from weapon import Weapon
 from ui import UI
 from enemy import Enemy
+from menu_game import Upgrade
 
 
 class Level:
@@ -15,6 +16,7 @@ class Level:
 
         #get the display surface
         self.display_surface = pygame.display.get_surface()
+        self.game_paused = False
         
         #sprite group setup
         self.visible_sprites = YsortCameraGroup()
@@ -30,6 +32,7 @@ class Level:
 
         #user interface
         self.ui = UI()
+        self.upgrade = Upgrade(self.player)
 
     def create_map(self):
         layout = {
@@ -64,31 +67,60 @@ class Level:
                                 Tile((250,200),[self.visible_sprites,self.obstacles_sprites],'bush4',arbusto)
 
 
-                            if style == 'object':
-                                surf = graphics['objects'][int(col)]
-                                Tile((x,y),[self.visible_sprites,self.obstacles_sprites],'object',surf)
-
                             if style == 'entities1':
-                                Enemy('bob',(x,y),[self.visible_sprites],self.obstacles_sprites)
+                                Enemy('bob',(x,y),[self.visible_sprites,
+                                                   self.attackable_sprites],
+                                                    self.obstacles_sprites,
+                                                    self.damage_player)
 
                             
                                                      
         self.player = Player((450,280),[self.visible_sprites],self.obstacles_sprites,self.create_attack,self.destroy_attack)
        
     def create_attack(self):
-        self.current_attack = Weapon(self.player ,[self.visible_sprites])
+        self.current_attack = Weapon(self.player ,[self.attack_sprites])
 
     def destroy_attack(self):
         if self.current_attack:
             self.current_attack.kill()
         self.current_attack = None
 
+    def player_attack_logic(self):
+        if self.attack_sprites:
+            for attack_sprite in self.attack_sprites:
+                collision_sprites = pygame.sprite.spritecollide(attack_sprite,self.attackable_sprites,False)
+                if collision_sprites:
+                    for target_sprite in collision_sprites:
+                        target_sprite.kill()
+
+    def damage_player(self,amount,attack_type):
+        if self.player.vulnerable:
+            self.player.health -= amount
+            self.player.vulnerable = False
+            self.player.hurt_time = pygame.time.get_ticks()
+               
+
+    def toggle_menu(self):
+
+        self.game_paused = not self.game_paused
+
     def run(self):
-        #update and draw the game
         self.visible_sprites.custom_draw(self.player)
-        self.visible_sprites.update()
-        self.visible_sprites.enemy_update(self.player)
         self.ui.display(self.player)
+        if self.game_paused:
+            self.upgrade.display()
+
+            #display menu
+        else:
+            self.visible_sprites.update()
+            self.visible_sprites.enemy_update(self.player)
+            self.player_attack_logic()
+        #update and draw the game
+        
+        
+       
+        
+        
         
 
 class YsortCameraGroup(pygame.sprite.Group):

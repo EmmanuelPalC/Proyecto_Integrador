@@ -3,7 +3,7 @@ from settings import *
 from entity import Entity
 
 class Enemy(Entity):
-    def __init__(self,monster_name,pos,groups,obstacle_sprites):
+    def __init__(self,monster_name,pos,groups,obstacle_sprites,damage_player):
 
         #general setup
         super().__init__(groups)
@@ -14,7 +14,7 @@ class Enemy(Entity):
 
         #movement
         self.rect = self.image.get_rect(topleft = pos)
-        self.hitbox = self.rect.inflate(0,-10)
+        self.hitbox = self.rect.inflate(-30,-30)
         self.obstacle_sprites = obstacle_sprites
 
         #stats
@@ -32,6 +32,7 @@ class Enemy(Entity):
         self.can_attack = True
         self.attack_time = None
         self.attack_cooldown = 500
+        self.damage_player = damage_player
 
 
 
@@ -67,8 +68,9 @@ class Enemy(Entity):
             self.image = pygame.image.load('assets/enemy/attack.png').convert_alpha()
             if self.status == 'attack':
                 self.attack_time = pygame.time.get_ticks()
+                self.damage_player(self.attack_damage,self.attack_type)
                 self.can_attack = False
-            print("attack")
+                
         elif self.status == 'move':
             self.direction = self.get_player_distance_direction(player)[1]
             self.image = pygame.image.load('assets\enemy\move.png').convert_alpha()
@@ -82,11 +84,18 @@ class Enemy(Entity):
             if current_time - self.attack_time >= self.attack_cooldown:
                 self.can_attack = True
 
+    def get_damage(self, player, attack_type):
+        if attack_type == 'weapon':
+            self.health = player.get_full_weapon_damage()
 
+    def check_death(self):
+        if self.health <=0:
+            self.kill()
 
     def update(self):
         self.move(self.speed)
         self.cooldown()
+    
 
     def enemy_update(self,player):
         self.get_status(player)
