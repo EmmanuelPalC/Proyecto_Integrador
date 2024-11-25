@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="72">
+ <tileset firstgid="1" name="piso_tierra" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="piso_tierra.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="tierra" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="tierra.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="pino_v.2" tilewidth="96" tileheight="96" tilecount="1" columns="1">
+  <image source="pino_v.2.png" trans="ff00ff" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="4" name="arbusto_v.2" tilewidth="96" tileheight="64" tilecount="1" columns="1">
+  <image source="arbusto_v.2.png" trans="ff00ff" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="5" name="areas_sin_pasto" tilewidth="32" tileheight="32" tilecount="9" columns="3">
+  <image source="areas_sin_pasto.png" trans="ff00ff" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="14" name="area sin pasto_5" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="area sin pasto_5.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="15" name="area sin pasto_4" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="area sin pasto_4.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="16" name="area sin pasto_3" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="area sin pasto_3.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="17" name="area sin pasto_2" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="area sin pasto_2.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="18" name="Piedras2_v2" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Piedras2_v2.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="19" name="Piedras_v2" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Piedras_v2.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="20" name="pino_fuego_0001" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="pino_fuego_0001.png" trans="ff00ff" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="21" name="pino_fuego2_0001" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="pino_fuego2_0001.png" trans="ff00ff" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="22" name="pino_muerto" tilewidth="96" tileheight="96" tilecount="1" columns="1">
+  <image source="pino_muerto.png" trans="ff00ff" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="23" name="pino_muerto_fuego_0001" tilewidth="96" tileheight="96" tilecount="1" columns="1">
+  <image source="pino_muerto_fuego_0001.png" trans="ff00ff" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="24" name="Piso_FloresAMa" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Piso_FloresAMa.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="25" name="Piso_FloresAZ" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Piso_FloresAZ.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="26" name="Piso_FloresBL" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Piso_FloresBL.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="27" name="piso_pasto3" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="piso_pasto3.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="28" name="piso_pasto2" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="piso_pasto2.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="29" name="Pasto_v2" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Pasto_v2.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="30" name="Pasto2_v2" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Pasto2_v2.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="31" name="fondo2_nv.2" tilewidth="32" tileheight="32" tilecount="150" columns="30">
+  <image source="fondo2_nv.2.png" trans="ff00ff" width="960" height="160"/>
+ </tileset>
+ <tileset firstgid="181" name="area sin pasto 32x32" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="area sin pasto 32x32.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="182" name="fuego1" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="fuego1.png" trans="ff00ff" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="183" name="piso" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="piso.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <layer id="4" name="colisiones" width="30" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="fondo" width="30" height="20">
+  <data encoding="csv">
+31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,
+61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,
+91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,
+121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,
+151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,
+183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,0,0,183,183,5,6,6,6,7,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,5,15,16,12,17,14,6,7,183,183,183,183,183,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,5,6,15,16,13,183,11,12,17,10,183,5,6,6,7,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,5,15,9,9,10,183,183,183,183,8,14,6,15,16,12,13,183,183,5,7,183,183,0,183,183,
+183,183,183,183,183,11,12,12,17,14,7,183,183,183,8,9,9,181,10,183,183,183,183,11,13,183,183,183,183,183,
+183,183,183,183,183,183,183,183,8,181,14,6,6,7,11,12,12,17,14,6,7,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,11,12,12,17,16,13,183,183,183,11,12,17,10,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,183,183,183,8,10,183,183,183,183,183,183,8,14,7,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,183,183,183,8,10,183,183,183,183,5,7,11,12,13,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,183,183,183,8,14,6,6,6,6,15,10,183,183,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,183,183,183,11,12,12,12,12,12,12,13,183,183,183,183,183,183,183,183,183,183,183,
+183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,183,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+ <layer id="8" name="flores,piedras,etc_cap1" width="30" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,19,0,0,0,0,0,18,24,0,0,0,0,24,29,0,0,0,0,24,29,0,0,0,0,0,
+28,0,0,0,0,28,26,30,0,0,0,29,0,0,0,0,0,0,0,0,0,0,0,0,24,0,0,0,0,0,
+26,27,0,0,0,0,0,0,26,0,0,0,0,0,0,25,0,0,0,24,0,0,0,0,0,24,0,0,0,0,
+0,0,24,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,29,19,0,0,0,
+28,26,0,0,0,0,0,0,0,0,0,28,0,0,0,0,0,0,0,0,0,0,0,30,0,26,27,27,26,25,
+0,0,0,24,0,0,0,0,0,0,25,29,30,26,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,26,
+26,26,0,0,25,0,0,0,0,0,0,28,26,28,0,0,0,0,0,0,0,25,0,0,0,0,26,29,30,26,
+0,24,26,0,0,0,0,27,0,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,0,0,
+0,24,0,26,28,0,0,0,0,0,0,0,0,0,28,30,0,0,0,0,0,0,0,28,25,28,0,25,0,26,
+24,0,0,0,0,0,0,0,0,0,24,0,0,0,0,27,0,0,0,0,0,0,0,0,28,0,30,28,0,0,
+0,0,0,24,0,26,0,0,0,0,0,0,0,29,0,0,30,0,0,0,0,0,0,27,0,30,0,28,26,24,
+24,0,0,24,0,0,24,28,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,24,24,0,0,24,0,24,
+30,24,0,0,0,26,30,0,27,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,24,0,0,0,0,
+28,29,26,28,0,0,26,28,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,24,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="14" name="fuego">
+  <object id="63" name="fuego1" gid="182" x="0" y="320" width="128" height="128"/>
+  <object id="64" name="fuego1" gid="182" x="-64" y="352" width="128" height="128"/>
+  <object id="66" name="fuego1" gid="182" x="64" y="480" width="128" height="128"/>
+  <object id="67" name="fuego1" gid="182" x="-32" y="576" width="128" height="128"/>
+  <object id="68" name="fuego1" gid="182" x="864" y="352" width="128" height="128"/>
+  <object id="69" name="fuego1" gid="182" x="864" y="480" width="128" height="128"/>
+  <object id="70" name="fuego1" gid="182" x="800" y="448" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup id="6" name="piedras_grandes">
+  <object id="42" name="Piedras2_v2" gid="18" x="96" y="320" width="32" height="32"/>
+  <object id="43" name="Piedras2_v2" gid="18" x="288" y="480" width="32" height="32"/>
+  <object id="44" name="Piedras2_v2" gid="18" x="544" y="352" width="32" height="32"/>
+  <object id="45" name="Piedras2_v2" gid="18" x="832" y="416" width="32" height="32"/>
+  <object id="46" name="Piedras2_v2" gid="18" x="736" y="448" width="32" height="32"/>
+  <object id="47" name="Piedras2_v2" gid="18" x="608" y="224" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="5" name="arbutos_detras_De_pinos">
+  <object id="39" name="arbusto_v.2" gid="4" x="800" y="512" width="96" height="64"/>
+  <object id="40" name="arbusto_v.2" gid="4" x="736" y="544" width="96" height="64"/>
+  <object id="54" name="arbusto_v.2" gid="4" x="160" y="224" width="96" height="64"/>
+  <object id="61" name="arbusto_v.2" gid="4" x="704" y="192" width="96" height="64"/>
+ </objectgroup>
+ <objectgroup id="2" name="Pinos">
+  <object id="1" name="pino_v.2" gid="3" x="-32" y="160" width="96" height="96"/>
+  <object id="3" name="pino_v.2" gid="3" x="0" y="192" width="96" height="96"/>
+  <object id="4" name="pino_v.2" gid="3" x="64" y="192" width="96" height="96"/>
+  <object id="5" name="pino_v.2" gid="3" x="32" y="224" width="96" height="96"/>
+  <object id="6" name="pino_v.2" gid="3" x="-32" y="416" width="96" height="96"/>
+  <object id="7" name="pino_v.2" gid="3" x="0" y="480" width="96" height="96"/>
+  <object id="8" name="pino_v.2" gid="3" x="32" y="448" width="96" height="96"/>
+  <object id="9" name="pino_v.2" gid="3" x="896" y="160" width="96" height="96"/>
+  <object id="16" name="pino_v.2" gid="3" x="864" y="192" width="96" height="96"/>
+  <object id="18" name="pino_v.2" gid="3" x="800" y="192" width="96" height="96"/>
+  <object id="19" name="pino_v.2" gid="3" x="832" y="224" width="96" height="96"/>
+  <object id="23" name="pino_v.2" gid="3" x="896" y="256" width="96" height="96"/>
+  <object id="25" name="pino_v.2" gid="3" x="864" y="544" width="96" height="96"/>
+  <object id="26" name="pino_v.2" gid="3" x="896" y="576" width="96" height="96"/>
+  <object id="27" name="pino_v.2" gid="3" x="800" y="576" width="96" height="96"/>
+  <object id="28" name="pino_v.2" gid="3" x="768" y="384" width="96" height="96"/>
+  <object id="49" name="pino_v.2" gid="3" x="96" y="256" width="96" height="96"/>
+  <object id="50" name="pino_v.2" gid="3" x="256" y="192" width="96" height="96"/>
+ </objectgroup>
+ <objectgroup id="10" name="Pino_muerto">
+  <object id="57" name="pino_muerto" gid="22" x="192" y="448" width="96" height="96"/>
+  <object id="58" name="pino_muerto" gid="22" x="640" y="224" width="96" height="96"/>
+ </objectgroup>
+ <objectgroup id="3" name="arbustos">
+  <object id="29" name="arbusto_v.2" gid="4" x="-64" y="224" width="96" height="64"/>
+  <object id="30" name="arbusto_v.2" gid="4" x="0" y="256" width="96" height="64"/>
+  <object id="32" name="arbusto_v.2" gid="4" x="32" y="512" width="96" height="64"/>
+  <object id="33" name="arbusto_v.2" gid="4" x="128" y="512" width="96" height="64"/>
+  <object id="34" name="arbusto_v.2" gid="4" x="64" y="544" width="96" height="64"/>
+  <object id="36" name="arbusto_v.2" gid="4" x="736" y="224" width="96" height="64"/>
+  <object id="37" name="arbusto_v.2" gid="4" x="832" y="320" width="96" height="64"/>
+  <object id="38" name="arbusto_v.2" gid="4" x="896" y="384" width="96" height="64"/>
+ </objectgroup>
+ <objectgroup id="7" name="objtanimnFUEGO1_pinos_completos">
+  <object id="48" name="pino_fuego_0001" gid="20" x="768" y="384" width="128" height="128"/>
+  <object id="56" name="pino_fuego_0001" gid="20" x="256" y="192" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup id="9" name="objtanimnFUEGO2_pinos_completos">
+  <object id="55" name="pino_fuego2_0001" gid="21" x="96" y="256" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup id="11" name="objtanimnFUEGO_pino_rip">
+  <object id="59" name="pino_muerto_fuego_0001" gid="23" x="640" y="224" width="96" height="96"/>
+  <object id="60" name="pino_muerto_fuego_0001" gid="23" x="192" y="448" width="96" height="96"/>
+ </objectgroup>
+</map>
