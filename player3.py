@@ -1,4 +1,3 @@
-
 import pygame
 import sys
 from settings import *
@@ -6,11 +5,12 @@ from support import import_folder
 from level import *
 from entity import Entity
 
-class Player(Entity):
 
+
+class Player3(Entity):
     def __init__(self, pos, groups,obstacle_sprites,create_attack,destroy_attack):
         super().__init__(groups)
-        self.image = pygame.image.load('assets/player/down.png').convert_alpha()
+        self.image = pygame.image.load('assets\player\down.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-20,-50)
 
@@ -19,7 +19,7 @@ class Player(Entity):
         self.status = 'down'
 
         #movement
-        self.speed = 20
+        self.speed = 5
         self.attacking = False
         self.attack_cooldowns = 5
         self.attack_time = None
@@ -32,11 +32,11 @@ class Player(Entity):
         self.weapon = list(weapon_data.keys())[self.weapon_index]
 
         #stats
-        self.stats = {'health': 200, 'energy': 500, 'attack':20}
+        self.stats = {'health': 100, 'energy': 500, 'attack':20}
         self.health = self.stats['health']
         self.energy = self.stats['energy']
-        self.exp=0
-
+        self.exp = 0
+       
        #damage timer
         self.vulnerable = True
         self.hurt_time =None
@@ -113,36 +113,40 @@ class Player(Entity):
         if self.status == 'up_idle':
             self.image = pygame.image.load('assets/player/jugador/animacion niño/no_weapon/detras/niñopordetras_0002.png').convert_alpha()
         if self.status == 'right_attack':
-            self.image = pygame.image.load('assets/player/jugador/animacion niño/caminando armado/derecha/niño atacando derecha_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets\player\jugador\plantar arbol\derecha/niño atacando derecha_0002.png').convert_alpha()
         if self.status == 'left_attack':
-            self.image = pygame.image.load('assets/player/jugador/animacion niño/caminando armado/izquierda/niño atacando  izquierda_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets\player\jugador\plantar arbol/izquierda/niño atacando  izquierda_0002.png').convert_alpha()
         if self.status == 'down_attack':
-            self.image = pygame.image.load('assets/player/jugador/animacion niño/caminando armado/frente/niño atacando enfrente_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets\player\jugador\plantar arbol/frente/niño atacando enfrente_0002.png').convert_alpha()
         if self.status == 'up_attack':
-            self.image = pygame.image.load('assets/player/jugador/animacion niño/caminando armado/detras/niño atacando detras_0002.png').convert_alpha()
-
-
+            self.image = pygame.image.load('assets\player\jugador\plantar arbol\detras/niño atacando detras_0002.png').convert_alpha()
 
     def timer(self):
-        global game_over
-        if self.energy != 0:
-            self.energy = self.energy - 1
-        elif self.energy <= 0:
-            self.image = pygame.image.load('assets/player/tired.png').convert_alpha()
+            if self.energy != 0:
+                self.energy = self.energy - 0.25
+            elif self.energy <= 0:
+                self.image = pygame.image.load('assets/player/tired.png').convert_alpha()
 
-        if self.health <= 0:
-            self.image = pygame.image.load('assets/player/death.png').convert_alpha()
-            game_over = True  
-            return
+                
+            if self.health <= 0:
+                self.image = pygame.image.load('assets\player\death.png').convert_alpha()
 
-        if self.exp == 9:
-            pygame.quit()
+            if self.exp ==10:
+                pygame.quit()
 
+    
+                
+                
 
+    
+            
+                
 
+   
+   
     def cooldowns(self):
         current_time=pygame.time.get_ticks()
-        if self.attacking:
+        if self.attacking == True:
             if current_time - self.attack_time >=self.attack_cooldowns + weapon_data[self.weapon]['cooldown']:
                 self.attacking = False
                 self.destroy_attack()
@@ -153,14 +157,18 @@ class Player(Entity):
 
     def animate(self):
         animation = self.animations[self.status]
+
+        #loop over the frame index
         self.frame_index += self.animation_speed
         if self.frame_index >= len(animation):
             self.frame_index = 0
+
+        #set the image
         self.image = animation[self.frame_index]
-        self.rect = self.image.get_rect(center=self.hitbox.center)
+        self.rect = self.image.get_rect(center = self.hitbox.center)
 
     def get_full_weapon_damage(self):
-        base_damage = self.stats['attack']
+        base_damage =  self.stats['attack']
         weapon_damage = weapon_data[self.weapon]['damage']
         return base_damage + weapon_damage
 
@@ -170,3 +178,4 @@ class Player(Entity):
         self.get_status()
         self.timer()
         self.move(self.speed)
+        

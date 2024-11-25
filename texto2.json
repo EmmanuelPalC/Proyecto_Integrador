@@ -1,0 +1,20 @@
+{
+    "spanish": {
+      "jugarr": "Jugar.png",
+      "options": "Opciones.png",
+      "quit": "Salir.png",
+      "language": "Lenguage.png",
+      "help": "Ayuda.png"
+
+    },
+    "english": {
+      "jugarr": "Play4.png",
+      "options": "Options4.png",
+      "quit": "Quit4.png",
+      "help": "HelpING.png",
+      "language": "LanguageING.png"
+      
+
+    }
+  }
+  

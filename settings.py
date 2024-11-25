@@ -5,8 +5,8 @@ TILESIZE = 64
 
 #ui
 BAR_HEIGHT = 20
-HEALTH_BAR_WIDTH = 200
-ENERGY_BAR_WIDTH = 140
+HEALTH_BAR_WIDTH = 175
+ENERGY_BAR_WIDTH = 175
 ITEM_BOX_SIZE = 80
 UI_FONT = 'assets/menu/font/joystix.ttf'
 UI_FONT_SIZE = 18
@@ -34,5 +34,6 @@ weapon_data ={
 }
 
 monster_data ={
-    'bob':{'health':100,'damage':20,'attack_type':'slash','speed':5,'resistance':3,'attack_radius':60,'notice_radius':150}
+    'bob':{'health':100,'damage':20,'attack_type':'slash','speed':5,'resistance':3,'attack_radius':60,'notice_radius':150},
+    'fire':{'health':100,'damage':20,'attack_type':'slash','speed':0,'resistance':3,'attack_radius':60,'notice_radius':150}
 }

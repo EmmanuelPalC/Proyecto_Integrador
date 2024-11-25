@@ -1,0 +1,22 @@
+{
+    "espanol": {
+        "jugar": "Jugar.png",
+        "options": "Opciones.png",
+        "quit":"Cerrar.png",
+        "back":" ",
+        "volumen":"",
+        "language":"",
+        "help":" ",
+        
+    },
+    "ingles": {
+        "jugar": "Jugar.png",
+        "options":"Opciones.png",
+        "quit":"Cerrar.png",
+        "back":" ",
+        "volumen":"",
+        "language":"",
+        "help":" ",
+
+    }
+}
