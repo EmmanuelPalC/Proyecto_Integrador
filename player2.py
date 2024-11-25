@@ -10,7 +10,7 @@ from entity import Entity
 class Player2(Entity):
     def __init__(self, pos, groups,obstacle_sprites,create_attack,destroy_attack):
         super().__init__(groups)
-        self.image = pygame.image.load('assets\player\down.png').convert_alpha()
+        self.image = pygame.image.load('assets/player/down.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-20,-50)
 
@@ -32,7 +32,7 @@ class Player2(Entity):
         self.weapon = list(weapon_data.keys())[self.weapon_index]
 
         #stats
-        self.stats = {'health': 100, 'energy': 500, 'attack':20}
+        self.stats = {'health': 100, 'energy': 450, 'attack':20}
         self.health = self.stats['health']
         self.energy = self.stats['energy']
         self.exp=0       
@@ -43,7 +43,7 @@ class Player2(Entity):
        
 
     def import_player_assets(self):
-        character_path ='assets\player'
+        character_path ='assets/player'
         self.animations= {'up':[],'down':[],'left':[],'right':[],
                           'down_idle':[],'up_idle':[],'right_idle':[],'left_idle':[],
                           'right_attack':[],'left_attack':[],'up_attack':[],'down_attack':[]}
@@ -121,27 +121,23 @@ class Player2(Entity):
             self.image = pygame.image.load('assets/player/jugador/Nueva carpeta (2)/niño cubeta detras_0002.png').convert_alpha()
 
     def timer(self):
-            global game_over
+            global game_over,win_game
+            win_game=False
             if self.energy != 0:
                 self.energy = self.energy - 1
             elif self.energy <= 0:
                 self.image = pygame.image.load('assets/player/tired.png').convert_alpha()
+                game_over = True  
+                return
                 
             if self.health <= 0:
                 self.image = pygame.image.load('assets\player\death.png').convert_alpha()
                 game_over = True  
                 return
-            if self.exp == 9:
-                pygame.quit()
+            if self.exp == 8:
+                win_game = True  
+                return
 
-
-    
-                
-                
-
-    
-            
-                
 
    
    

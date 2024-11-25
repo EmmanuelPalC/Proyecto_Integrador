@@ -3,6 +3,7 @@ from button import Button
 from settings import * 
 from level import Level
 from level2 import Level2
+from level3 import Level3
 from debug import *
 import json
 
@@ -16,9 +17,10 @@ game_over = False  # Variable global que indica si el jugador ha muerto
 
 click_sound = pygame.mixer.Sound("assets/music/2.mp3")  
 game_sound = pygame.mixer.Sound("assets/music/Pista1_Menu1.mp3")  
-if not pygame.mixer.music.get_busy():  # Si no hay música sonando
-        pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
-        pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.stop()
+if not pygame.mixer.music.get_busy():  # Si no hay música sonando 
+    pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
+    pygame.mixer.music.play(-1, 0.0)
 pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
 
 pygame.mixer.music.play(-1, 0.0)
@@ -43,7 +45,7 @@ OPCIONES_BG = pygame.image.load("assets/botones/BotonesFinales/Options_Español.
 LANGUAGE_SCREEN = pygame.image.load("assets/menu/Menu_lenguage_Español.png")
 LANGUAGE_SCREEN2 = pygame.image.load("assets/botones/BotonesFinales/Options_ingles_lan2.png")
 HELP=pygame.image.load("assets/botones/Opciones_ayuda.png")
-HELP2=pygame.image.load("assets/botones/BotonesFinales\Options_Help.png")
+HELP2=pygame.image.load("assets/botones/BotonesFinales/Options_Help.png")
 VOLUMEN=pygame.image.load("assets/botones/BotonesFinales/VOLFE.png")
 VOLUMEN2=pygame.image.load("assets/botones/BotonesFinales/VOLFI.png")
 GAMEOVER=pygame.image.load("assets/menu/Perdiste.png")
@@ -273,7 +275,14 @@ def options():
 
 # Función del menú principal
 def main_menu():
+    
+    
     while True:
+
+        if not pygame.mixer.music.get_busy():  # Si no hay música sonando 
+            pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
+            pygame.mixer.music.play(-1, 0.0)
+
         SCREEN.blit(BG, (0, 0))
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
@@ -319,11 +328,11 @@ def play():
 
         # Fondos y textos para el selector de niveles
         SCREEN.blit(pygame.image.load("assets/botones/fondoNiveles.png"), (0, 0))
-        LEVEL_1_BUTTON = Button(image=None, pos=(255, 360), 
+        LEVEL_1_BUTTON = Button(image=None, pos=(252, 360), 
                                  text_input="1", font=get_font(70), base_color="White", hovering_color="Green")
-        LEVEL_2_BUTTON = Button(image=None, pos=(500, 350), 
+        LEVEL_2_BUTTON = Button(image=None, pos=(508, 359), 
                                  text_input="2", font=get_font(70), base_color="White", hovering_color="Green")
-        LEVEL_3_BUTTON = Button(image=None, pos=(730, 350), 
+        LEVEL_3_BUTTON = Button(image=None, pos=(725, 359), 
                                  text_input="3", font=get_font(70), base_color="White", hovering_color="Green")
         
         if idioma=="spanish":
@@ -414,23 +423,23 @@ def win():
 
 
         if idioma == "spanish":
-            SCREEN.blit(WIN, (0, 0))
-        else:
             SCREEN.blit(WIN2, (0, 0))
+        else:
+            SCREEN.blit(WIN, (0, 0))
 
         WIN_MOUSE_POS = pygame.mouse.get_pos()
         
         # Crear botones para reiniciar o salir
-        home_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/HOME.png"), pos=(280, 485), text_input="", font=get_font(50), base_color="White", hovering_color="Green")
-        salir_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/salirr.png"), pos=(700, 487), text_input="", font=get_font(50), base_color="White", hovering_color="Green")
-        RESTART_BUTTON = Button(image=pygame.image.load("assets/botones/BotonesFinales/RESTART.png"), pos=(495, 485), text_input="", font=get_font(40), base_color="White", hovering_color="Brown")
+        home_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/HOME.png"), pos=(280, 530), text_input="", font=get_font(50), base_color="White", hovering_color="Green")
+        salir_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/salirr.png"), pos=(700, 530), text_input="", font=get_font(50), base_color="White", hovering_color="Green")
+        NEXTLEVEL_BUTTON = Button(image=pygame.image.load("assets/botones/BotonesFinales/RESUME.png"), pos=(495, 530), text_input="", font=get_font(40), base_color="White", hovering_color="Brown")
        
         
-        RESTART_BUTTON.changeColor(WIN_MOUSE_POS)
+        NEXTLEVEL_BUTTON.changeColor(WIN_MOUSE_POS)
         salir_button.changeColor(WIN_MOUSE_POS)
         
         # Actualizar los botones en la pantalla
-        RESTART_BUTTON.update(SCREEN)
+        NEXTLEVEL_BUTTON.update(SCREEN)
         salir_button.update(SCREEN)
         home_button.update(SCREEN)
 
@@ -441,9 +450,9 @@ def win():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if RESTART_BUTTON.checkForInput(WIN_MOUSE_POS):
+                if NEXTLEVEL_BUTTON.checkForInput(WIN_MOUSE_POS):
                     click_sound.play()
-                    return "restart"  # El jugador elige reiniciar
+                    play()
                 if salir_button.checkForInput(WIN_MOUSE_POS):
                     click_sound.play()
                     pygame.quit()
@@ -461,6 +470,9 @@ def start_level(level):
     paused = False  # Variable que controla el estado de pausa
     level_game = Level()  # Crear una instancia del nivel
     win_game=False
+    game_over=False
+
+    level_game = Level()
     
     if not pygame.mixer.music.get_busy():  # Si no hay música sonando
         pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
@@ -491,8 +503,19 @@ def start_level(level):
                 sys.exit()  # Salir del juego
 
         if win_game:  # Verifica si el jugador ha ganado
-            pygame.mixer.music.stop()  # Detiene la música de fondo
-            return win()  # Llama a la pantalla de victoria
+            pygame.mixer.music.stop()
+            # Reproducir la música de "game over"
+            pygame.mixer.music.load("assets/music/winning-loop-228639.mp3")  # Música de Game Over
+            pygame.mixer.music.play(0, 0.0)  # Reproducir una vez (0 indica no loop)
+            # Llamar a la función de "game over" para mostrar la pantalla de Game Over
+            result = win()
+            if result == "restart":
+                win_game = False
+                play()
+                return  # Salir del bucle actual
+            elif result == "exit":
+                pygame.quit()
+                sys.exit()  # Salir del juego
         
         pygame.display.set_caption(f"Forest Keepers - Nivel {level}")
 
@@ -560,7 +583,7 @@ def start_level(level):
                 continue
             if level_game.win_condition():  # Esta es la nueva función que debes definir en tu clase Level
                 win_game = True 
-
+                continue
             
             # Mostrar el botón de pausa
             pause_button.update(SCREEN)
@@ -570,10 +593,15 @@ def start_level(level):
 
 
 def start_level2(level):
-
+    pygame.mixer.music.stop()
     level_game = Level2()
-    global idioma,game_over
+    global idioma,game_over,win_game
     paused = False  # Variable que controla el estado de pausa
+    win_game=False
+    game_over=False
+    
+    level_game = Level2()
+    
 
     if not pygame.mixer.music.get_busy():  # Si no hay música sonando
         pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
@@ -596,6 +624,21 @@ def start_level2(level):
             if result == "restart":
                 game_over = False
                 start_level2(level)  # Reinicia el nivel actual
+                return  # Salir del bucle actual
+            elif result == "exit":
+                pygame.quit()
+                sys.exit()  # Salir del juego
+        
+        if win_game:  # Verifica si el jugador ha ganado
+            pygame.mixer.music.stop()
+            # Reproducir la música de "game over"
+            pygame.mixer.music.load("assets/music/winning-loop-228639.mp3")  # Música de Game Over
+            pygame.mixer.music.play(0, 0.0)  # Reproducir una vez (0 indica no loop)
+            # Llamar a la función de "game over" para mostrar la pantalla de Game Over
+            result = win()
+            if result == "restart":
+                win_game = False
+                play()
                 return  # Salir del bucle actual
             elif result == "exit":
                 pygame.quit()
@@ -665,6 +708,135 @@ def start_level2(level):
             if level_game.game_over_condition():
                 game_over = True  # Activa el estado de "game over"
                 continue
+            if level_game.win_condition():  # Esta es la nueva función que debes definir en tu clase Level
+                win_game = True 
+                continue
+
+            # Mostrar el botón de pausa
+            pause_button.update(SCREEN)
+            pygame.display.update()
+            pygame.time.Clock().tick(FPS)
+
+
+def start_level3(level):
+    pygame.mixer.music.stop()
+    level_game = Level3()
+    global idioma, game_over,win_game
+    win_game=False
+    paused = False  # Variable que controla el estado de pausa
+    game_over=False
+    
+    level_game = Level3()
+    if not pygame.mixer.music.get_busy():  # Si no hay música sonando
+        pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
+        pygame.mixer.music.play(-1, 0.0)
+    
+    mouse_pos = pygame.mouse.get_pos()
+    # Botones de control (pausa, home, salir)
+    if paused==False:
+        pause_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/pausaa.png"), pos=(920, 50), text_input="", font=get_font(30), base_color="White", hovering_color="Green")
+    
+    home_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/HOME.png"), pos=(280, 370), text_input="", font=get_font(50), base_color="White", hovering_color="Green")
+    salir_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/salirr.png"), pos=(650, 370), text_input="", font=get_font(50), base_color="White", hovering_color="Green")
+    # Bucle principal del nivel
+    while True:
+        if game_over:
+            pygame.mixer.music.stop()
+            # Reproducir la música de "game over"
+            pygame.mixer.music.load("assets/music/game-over-classic-206486.mp3")  # Música de Game Over
+            pygame.mixer.music.play(0, 0.0)  # Reproducir una vez (0 indica no loop)
+            # Llamar a la función de "game over" para mostrar la pantalla de Game Over
+            result = gameover()
+            if result == "restart":
+                game_over = False
+                start_level3(level)  # Reinicia el nivel actual
+                return  # Salir del bucle actual
+            elif result == "exit":
+                pygame.quit()
+                sys.exit()  # Salir del juego
+
+        if win_game:  # Verifica si el jugador ha ganado
+            pygame.mixer.music.stop()
+            # Reproducir la música de "game over"
+            pygame.mixer.music.load("assets/music/winning-loop-228639.mp3")  # Música de Game Over
+            pygame.mixer.music.play(0, 0.0)  # Reproducir una vez (0 indica no loop)
+            # Llamar a la función de "game over" para mostrar la pantalla de Game Over
+            result = win()
+            if result == "restart":
+                win_game = False
+                play()
+                return  # Salir del bucle actual
+            elif result == "exit":
+                pygame.quit()
+                sys.e
+        
+        pygame.display.set_caption(f"Forest Keepers - Nivel {level}")
+
+        if not pygame.mixer.music.get_busy():  # Si no hay música sonando
+            pygame.mixer.music.load("assets/music/Pista1_Menu1.mp3")  # Música de fondo
+            pygame.mixer.music.play(-1, 0.0)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    paused = not paused  # Alterna el estado de pausa
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if pause_button.checkForInput(mouse_pos):
+                    click_sound.play()
+                    paused = not paused  # Alterna el estado de pausa al presionar el botón de pausa
+
+        if paused:
+            # Muestra la pantalla de pausa
+            if idioma == "spanish":
+                SCREEN.blit(pygame.image.load("assets/botones/BotonesFinales/Pausa.png"), (0, 0))
+            else:
+                SCREEN.blit(pygame.image.load("assets/botones/BotonesFinales/Paused.png"), (0, 0))
+
+            pause_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/RESUME.png"), pos=(470, 370), text_input="", font=get_font(30), base_color="White", hovering_color="Green")
+            home_button.update(SCREEN)
+            salir_button.update(SCREEN)
+            pause_button.update(SCREEN)
+
+            while paused:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        mouse_pos = pygame.mouse.get_pos()
+                        if home_button.checkForInput(mouse_pos):
+                            click_sound.play()
+                            main_menu()
+                        if salir_button.checkForInput(mouse_pos):
+                            click_sound.play()
+                            pygame.quit()
+                            sys.exit()
+                        if pause_button.checkForInput(mouse_pos):
+                            click_sound.play()
+                            paused = False  # Reanudar el juego
+
+                pygame.display.update()
+                pygame.time.Clock().tick(FPS)
+        
+
+        else:
+            # Si el juego no está pausado, ejecutar la lógica del nivel
+            pause_button = Button(image=pygame.image.load("assets/botones/BotonesFinales/pausaa.png"), pos=(920, 50), text_input="", font=get_font(30), base_color="White", hovering_color="Green")
+            level_game.run()  # Llama al método run del nivel
+
+            # Verifica si el jugador ha muerto y activa "game over"
+            if level_game.game_over_condition():
+                game_over = True  # Activa el estado de "game over"
+                continue
+            if level_game.win_condition():  # Esta es la nueva función que debes definir en tu clase Level
+                win_game = True 
+                continue
 
             
             # Mostrar el botón de pausa
@@ -672,27 +844,9 @@ def start_level2(level):
 
             pygame.display.update()
             pygame.time.Clock().tick(FPS)
+    
+pygame.mixer.music.stop()
 
-
-def start_level3(level):
-    while True:
-        SCREEN.fill("black")
-        pygame.display.set_caption(f"Forest Keepers - Nivel {level}")
-        level_game = Level()
-
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_p:
-                        level_game.toggle_menu()
-
-            SCREEN.fill("black")
-            level_game.run()
-            pygame.display.update()
-            pygame.time.Clock().tick(FPS)
 
 
 

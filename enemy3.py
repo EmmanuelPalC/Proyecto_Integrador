@@ -10,7 +10,7 @@ class Enemy3(Entity):
         self.sprite_type = 'enemy'
 
         #graphics setup
-        self.image = pygame.image.load('mapa3\pino_tronco.png').convert_alpha()
+        self.image = pygame.image.load('mapa3/pino_tronco.png').convert_alpha()
 
         #movement
         self.rect = self.image.get_rect(topleft = pos)
@@ -65,7 +65,7 @@ class Enemy3(Entity):
 
     def actions(self,player):
         if self.status == 'attack':
-            self.image = pygame.image.load('mapa3\pino_tronco.png').convert_alpha()
+            self.image = pygame.image.load('mapa3/pino_tronco.png').convert_alpha()
             if self.status == 'attack':
                 self.attack_time = pygame.time.get_ticks()
                 self.damage_player(self.attack_damage,self.attack_type)
@@ -73,10 +73,10 @@ class Enemy3(Entity):
                 
         elif self.status == 'move':
             self.direction = self.get_player_distance_direction(player)[1]
-            self.image = pygame.image.load('mapa3\pino_tronco.png').convert_alpha()
+            self.image = pygame.image.load('mapa3/pino_tronco.png').convert_alpha()
         else:
             self.direction = pygame.math.Vector2()
-            self.image = pygame.image.load('mapa3\pino_tronco.png').convert_alpha()
+            self.image = pygame.image.load('mapa3/pino_tronco.png').convert_alpha()
         
     def cooldown(self):
         if not self.can_attack:

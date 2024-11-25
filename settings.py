@@ -30,10 +30,19 @@ UPGRADE_BG_COLOR_SELECTED = '#EEEEEE'
 
 #weapon
 weapon_data ={
-    'hammer':{'cooldown':50, 'damage':15,'graphic':'assets\player\hammer.png'}
+    'hammer':{'cooldown':50, 'damage':15,'graphic':'assets/player/hammer.png'}
 }
 
 monster_data ={
     'bob':{'health':100,'damage':20,'attack_type':'slash','speed':5,'resistance':3,'attack_radius':60,'notice_radius':150},
-    'fire':{'health':100,'damage':20,'attack_type':'slash','speed':0,'resistance':3,'attack_radius':60,'notice_radius':150}
+    'fire':{'health':100,'damage':40,'attack_type':'slash','speed':0,'resistance':3,'attack_radius':60,'notice_radius':150},
+    'tree': {
+        'health': 100,
+        'speed': 0,
+        'damage': 0,
+        'resistance': 5,
+        'attack_radius': 50,
+        'notice_radius': 200,
+        'attack_type': 'fire'
+    }
 }

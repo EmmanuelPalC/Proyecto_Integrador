@@ -15,7 +15,7 @@ class Level:
         # Obtén la superficie de la pantalla
         self.display_surface = pygame.display.get_surface()
         self.enemies_defeated = 0  # Número de enemigos derrotados (inicialmente 0)
-        self.total_enemies = 10 
+        self.total_enemies = 9 
         
         # Inicializa todos los grupos de sprites
         self.visible_sprites = YsortCameraGroup()  # Grupo de sprites visibles
@@ -103,12 +103,6 @@ class Level:
         """Alternar entre el menú de pausa y el juego en ejecución"""
         self.game_paused = not self.game_paused
 
-    def win_condition(self):
-        """Verifica si el jugador ha ganado el nivel"""
-        # Aquí verificamos si el número de enemigos derrotados alcanza el número total de enemigos
-        if self.enemies_defeated >= self.total_enemies:
-            return True
-        return False
 
 
     def run(self):
@@ -129,10 +123,17 @@ class Level:
 
     def game_over_condition(self):
         """Comprueba si la salud del jugador ha llegado a cero o menos"""
-        if self.player.health <= 0:
+        if self.player.health <= 0 or self.player.energy <= 0:
             self.player_dead = True
             return True  # El jugador ha muerto
         return False  # El jugador sigue vivo
+    
+    def win_condition(self):
+        """Verifica si el jugador ha ganado el nivel"""
+        # Aquí verificamos si el número de enemigos derrotados alcanza el número total de enemigos
+        if self.player.exp >= self.total_enemies:
+            return True
+        return False
     
 
 class YsortCameraGroup(pygame.sprite.Group):

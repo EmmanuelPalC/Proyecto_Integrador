@@ -19,6 +19,7 @@ class Level2:
         #get the display surface
         self.display_surface = pygame.display.get_surface()
         self.game_paused = False
+        self.total_enemies = 8
         
         #sprite group setup
         self.visible_sprites = YsortCameraGroup()
@@ -126,10 +127,18 @@ class Level2:
     
     def game_over_condition(self):
         """Comprueba si la salud del jugador ha llegado a cero o menos"""
-        if self.player.health <= 0:
+        if self.player.health <= 0 or self.player.energy <= 0 :
             self.player_dead = True
             return True  # El jugador ha muerto
         return False  # El jugador sigue vivo
+    
+    def win_condition(self):
+        """Verifica si el jugador ha ganado el nivel"""
+        # Aquí verificamos si el número de enemigos derrotados alcanza el número total de enemigos
+        if self.player.exp >= self.total_enemies:
+            return True
+        return False
+
         
         
        

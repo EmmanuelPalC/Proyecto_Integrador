@@ -22,6 +22,7 @@ class Level3:
         self.display_surface = pygame.display.get_surface()
         self.game_paused = False
         
+        self.total_enemies = 10
         #sprite group setup
         self.visible_sprites = YsortCameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
@@ -40,12 +41,12 @@ class Level3:
 
     def create_map(self):
         layout = {
-            'boundary': import_csv_layout('mapa3\MAPA3_boundaries.csv'),
+            'boundary': import_csv_layout('mapa3/MAPA3_boundaries.csv'),
             'bush1': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto.csv'),
             'bush2': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto_2.csv'),
             'bush3': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto_3.csv'),
             'bush4': import_csv_layout('assets/mapa/arbusto/MAPAAAAA_arbusto_4.csv'),
-            'entities3':import_csv_layout('mapa3\MAPA3_entities.csv'),
+            'entities3':import_csv_layout('mapa3/MAPA3_entities.csv'),
         }
 
 
@@ -110,7 +111,7 @@ class Level3:
                         target_sprite.kill()
 
                     # Cargar la nueva imagen
-                        new_image = pygame.image.load('mapa3\pino_chikito.png').convert_alpha()
+                        new_image = pygame.image.load('mapa3/pino_chikito.png').convert_alpha()
 
                     # Crear un nuevo sprite utilizando la nueva imagen
                         new_sprite = Tile(new_position, [self.visible_sprites, self.obstacles_sprites], 'pino', new_image)
@@ -128,6 +129,8 @@ class Level3:
         self.game_paused = not self.game_paused
 
     def run(self):
+        if self.game_over_condition():
+            return  # Detiene el nivel en caso de Game Over
         self.visible_sprites.custom_draw(self.player)
         self.ui.display(self.player)
         if self.game_paused:
@@ -139,7 +142,21 @@ class Level3:
             self.visible_sprites.enemy_update(self.player)
             self.player_attack_logic()
         #update and draw the game
+
+    def game_over_condition(self):
+        """Comprueba si la salud del jugador ha llegado a cero o menos"""
+        if self.player.health <= 0 or self.player.energy <= 0 :
+            self.player_dead = True
+            return True  # El jugador ha muerto
+        return False  # El jugador sigue vivo
         
+    def win_condition(self):
+        """Verifica si el jugador ha ganado el nivel"""
+        # Aquí verificamos si el número de enemigos derrotados alcanza el número total de enemigos
+        if self.player.exp >= self.total_enemies:
+            return True
+        return False
+
         
        
         
@@ -157,7 +174,7 @@ class YsortCameraGroup(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
 
         #creating the floor
-        self.floor_surf=pygame.image.load('mapa3\Mapa3.png').convert()
+        self.floor_surf=pygame.image.load('mapa3/Mapa3.png').convert()
         self.floor_rect=self.floor_surf.get_rect(topleft=(0,0))
 
     def custom_draw(self, player):

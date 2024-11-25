@@ -10,7 +10,7 @@ from entity import Entity
 class Player3(Entity):
     def __init__(self, pos, groups,obstacle_sprites,create_attack,destroy_attack):
         super().__init__(groups)
-        self.image = pygame.image.load('assets\player\down.png').convert_alpha()
+        self.image = pygame.image.load('assets/player/down.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-20,-50)
 
@@ -32,7 +32,7 @@ class Player3(Entity):
         self.weapon = list(weapon_data.keys())[self.weapon_index]
 
         #stats
-        self.stats = {'health': 100, 'energy': 500, 'attack':20}
+        self.stats = {'health': 100, 'energy': 400, 'attack':20}
         self.health = self.stats['health']
         self.energy = self.stats['energy']
         self.exp = 0
@@ -41,10 +41,15 @@ class Player3(Entity):
         self.vulnerable = True
         self.hurt_time =None
         self.invulnerability_duration = 500
+
+        # Timer setup
+        self.start_time = pygame.time.get_ticks()  # Store the start time
+        self.time_limit = 300000  # Set the time limit to 5 minutes (300,000 ms)
+    
        
 
     def import_player_assets(self):
-        character_path ='assets\player'
+        character_path ='assets/player'
         self.animations= {'up':[],'down':[],'left':[],'right':[],
                           'down_idle':[],'up_idle':[],'right_idle':[],'left_idle':[],
                           'right_attack':[],'left_attack':[],'up_attack':[],'down_attack':[]}
@@ -105,7 +110,7 @@ class Player3(Entity):
         if self.status == 'up':
             self.image = pygame.image.load('assets/player/jugador/animacion niño/no_weapon/detras/niñopordetras_0001.png').convert_alpha()
         if self.status == 'left_idle':
-            self.image = pygame.image.load('assets/player/jugador/animacion niño/no_weapon\izquierda/niño volteando izquierda_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets/player/jugador/animacion niño/no_weapon/izquierda/niño volteando izquierda_0002.png').convert_alpha()
         if self.status == 'right_idle':
             self.image = pygame.image.load('assets/player/jugador/animacion niño/no_weapon/derecha/niño volteando derecha_0002.png').convert_alpha()
         if self.status == 'down_idle':
@@ -113,26 +118,32 @@ class Player3(Entity):
         if self.status == 'up_idle':
             self.image = pygame.image.load('assets/player/jugador/animacion niño/no_weapon/detras/niñopordetras_0002.png').convert_alpha()
         if self.status == 'right_attack':
-            self.image = pygame.image.load('assets\player\jugador\plantar arbol\derecha/niño atacando derecha_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets/player/jugador/plantar arbol/derecha/niño atacando derecha_0002.png').convert_alpha()
         if self.status == 'left_attack':
-            self.image = pygame.image.load('assets\player\jugador\plantar arbol/izquierda/niño atacando  izquierda_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets/player/jugador/plantar arbol/izquierda/niño atacando  izquierda_0002.png').convert_alpha()
         if self.status == 'down_attack':
-            self.image = pygame.image.load('assets\player\jugador\plantar arbol/frente/niño atacando enfrente_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets/player/jugador/plantar arbol/frente/niño atacando enfrente_0002.png').convert_alpha()
         if self.status == 'up_attack':
-            self.image = pygame.image.load('assets\player\jugador\plantar arbol\detras/niño atacando detras_0002.png').convert_alpha()
+            self.image = pygame.image.load('assets/player/jugador/plantar arbol/detras/niño atacando detras_0002.png').convert_alpha()
 
     def timer(self):
+            global game_over,win_game
+            win_game=False
             if self.energy != 0:
-                self.energy = self.energy - 0.25
+                self.energy = self.energy - 1
             elif self.energy <= 0:
                 self.image = pygame.image.load('assets/player/tired.png').convert_alpha()
-
+                game_over = True  
+                return
                 
             if self.health <= 0:
-                self.image = pygame.image.load('assets\player\death.png').convert_alpha()
+                self.image = pygame.image.load('assets/player/death.png').convert_alpha()
+                game_over = True  
+                return
+            if self.exp == 10:
+                win_game = True  
+                return
 
-            if self.exp ==10:
-                pygame.quit()
 
     
                 
